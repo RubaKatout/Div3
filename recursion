@@ -1,0 +1,52 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+const int N = 1e5 + 5 ;
+
+int depths[N];
+#define debug(x) cout << "[" << #x << " is : " << x << "]\n";
+void calc(vector<int> v , int d){
+    if(v.empty())return ;
+
+    vector<int> l , r ;
+    int n = v.size();
+    int mx = *max_element(v.begin() , v.end());
+  //  debug(mx);
+    for(int i = 0 ; i < n ; i ++){
+        l.push_back(v[i]);
+
+        if(v[i] == mx){
+            l.pop_back();
+            for(int j = i + 1 ; j < n ; j ++)r.push_back(v[j]);
+            break;
+        }
+    }
+    depths[mx] = d ;
+    calc(l , d + 1) ;
+    calc(r , d + 1);
+
+
+
+}
+
+int32_t main()
+
+{
+
+    ios_base::sync_with_stdio(false); cin.tie(0);
+
+    int t;
+    cin >> t ;
+    while(t--){
+        int n;
+        cin >> n ;
+        vector<int> v(n);
+        for(auto &it : v)cin >> it ;
+
+        calc(v , 0);
+
+        for(int i = 0 ; i < n ; i ++)cout << depths[v[i]] << " ";
+
+        cout << '\n';
+    }
+}
