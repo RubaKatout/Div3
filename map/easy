@@ -1,0 +1,49 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+const int N = 2e5 + 5 ;
+
+
+#define debug(x) cout << "[" << #x << " is : " << x << "]" << endl;
+
+void print(int n , int m , int a[] , int b[]){
+
+    debug(n);
+    debug(m);
+    for(int i = 0 ; i < n ; i ++)cout << a[i] << " ";
+    cout << endl ;
+    for(int i = 0 ; i< m ; i ++)cout << b[i] << " ";
+
+}
+#define int long long
+
+int32_t main()
+
+{
+
+    ios_base::sync_with_stdio(false); cin.tie(0);
+
+   int t ;
+   cin >> t;
+    int cnt = 0 ;
+
+
+   while(t--){
+    string s ;
+    cin >> s ;
+    int ans = 0;
+
+    map<char , int > mp ;
+    for(auto f : s){
+        mp[f] ++ ;
+        if(mp.size() == 4){
+            ans ++ ;
+            mp.clear();
+            mp[f] ++ ;
+        }
+    }
+    if(mp.size())ans ++ ;
+    cout << ans ;
+    cout << '\n';
+   }
+}
