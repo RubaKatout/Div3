@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+using namespace std ;
+
+
+
+int main(){
+
+
+    int n ;
+    cin >> n ;
+
+
+    long long st ;
+    map<long long  , int > mp ;
+
+    while(n--){
+        long long a ;
+        cin >> a ;
+        mp[a] ++ ;
+
+    }
+
+    for(auto f : mp){
+        if((f.first % 2 || !mp.count(f.first / 2)) && !(mp.count(f.first * 3))){
+            st = f.first ;
+            break;
+        }
+    }
+
+    cout << st ;
+    while(1){
+        cout << " ";
+        if(mp.count(st * 2)){
+            cout << st * 2 ;
+            st *= 2 ;
+
+        }
+        else {
+            if(st % 3 == 0 && mp.count(st / 3)){
+                cout << st / 3 ;
+                st /= 3 ;
+
+            }
+            else break;
+        }
+    }
+}
