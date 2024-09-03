@@ -1,0 +1,49 @@
+#include<bits/stdc++.h>
+using namespace std ;
+
+
+int main(){
+
+
+    int n , k ;
+    cin >> n >> k ;
+    priority_queue<int> pq ;
+    int p = 1 ;
+    while(n){
+        if(n & 1)pq.push(p);
+        p <<= 1 ;
+        n >>= 1 ;
+
+    }
+
+
+
+        while(pq.size() < k){
+            auto tp = pq.top();
+            pq.pop();
+            if(tp == 1){
+                cout << "NO";
+                return 0;
+
+            }
+            tp /= 2 ;
+            pq.push(tp);
+            pq.push(tp);
+
+        }
+        if(pq.size() > k)cout << "NO";
+        else {
+            cout << "YES\n";
+            while(pq.size()){
+                cout << pq.top() << " ";
+                pq.pop();
+
+            }
+        }
+
+
+
+
+
+
+}
