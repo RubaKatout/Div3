@@ -1,0 +1,42 @@
+#include<bits/stdc++.h>
+using namespace std ;
+
+int deg(long long i){
+
+    int ret = 0 ;
+    while(i % 3 == 0)ret ++ , i /= 3 ;
+
+    return ret ;
+
+}
+
+struct Data{
+
+    long long i;
+
+    bool operator < (const Data & other)const{
+
+        if(deg(i) == deg(other.i))return i < other.i ;
+        return deg(i) > deg(other.i);
+
+    }
+
+};
+
+int main(){
+
+
+    int n ;
+    cin >> n ;
+    vector<Data> v;
+    while(n--){
+        long long a ;
+        cin >> a;
+        v.push_back({a});
+    }
+
+    sort(v.begin() , v.end());
+
+    for(auto f : v)cout << f.i << " ";
+
+}
