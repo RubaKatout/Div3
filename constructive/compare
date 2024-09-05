@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+using namespace std ;
+
+char get(vector<char> v){
+    //BGR
+    sort(v.begin() , v.end());
+    if(v[0] != 'B')return 'B';
+    else if(v.back() != 'R')return 'R';
+    else return 'G';
+
+}
+
+int main(){
+
+
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+
+    int n ;
+    string s ;
+    cin >> n >> s ;
+    int mn = 0 ;
+    for(int i = 1 ; i < n ; i ++){
+        if(s[i] == s[i - 1]){
+            mn ++ ;
+            if(i +1 < n){
+                s[i] = get({ s[i - 1] , s[i + 1]});
+
+            }
+            else s[i] = get({s[i - 1]});
+        }
+    }
+
+    cout << mn << '\n' << s ;
+
+
+
+
+}
