@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+const int N = 2e5 + 5 ;
+
+
+int main()
+{
+
+    int n , k ;
+    cin >> n >> k ;
+
+    int arr[n];
+    for(int i = 0 ; i < n ; i ++)cin >> arr[i];
+
+
+    // when taking input , compare condition (if they are in same group minus them)
+    int ans[n] = {};
+    map<int , vector<int>  > mp ;
+    for(int i = 0 ; i < n ; i ++)mp[arr[i]] .push_back(i) ;
+
+    for(int i = 0 ; i < k ; i ++){
+        int a , b ;
+        cin >> a >> b ;
+        a -- , b -- ;
+
+        if(arr[a] > arr[b])ans[a] -- ;
+        if(arr[a] < arr[b])ans[b] -- ;
+
+    }
+    int cnt = 0 ;
+    for(auto f : mp){
+        for(auto it : f.second)ans[it] += cnt ;
+
+        cnt += f.second.size();
+
+    }
+    for(int i = 0 ; i < n ; i ++)cout << ans[i] << " ";
+    return 0;
+}
