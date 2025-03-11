@@ -1,0 +1,60 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+#define debug(x) cout << '[' << #x << " is: " << x << "] " << '\n';
+#define imod(a , n) (a % n + n ) % n
+
+#define fastio ios_base::sync_with_stdio(false);cin.tie(0);
+#define inF freopen("milkvisits.in","r",stdin );
+#define outF freopen("milkvisits.out" , "w" , stdout ) ;
+#define sor(v) sort(v.begin() , v.end());
+#define print(v) for(auto f : v ) cout << f << " " ;
+#define rsor(v) sort(v.rbegin() , v.rend());
+#define rev(v) reverse(v.begin() , v.end());
+
+#define ll long long
+#define int ll
+const double eps = 1e-6 , PI = acos(-1) ;
+const long long OO = 1e18 ;
+const ll N = 2e5 + 5 , oo = 1e9 + 1  , M = 896, mod = 1e9 + 7 , K = 12;
+int n , m ;
+vector<int>adj[N];
+int vis[N];
+int nt;
+void dfs(int u , int p){
+    vis[u]++ ;
+    if(adj[u].size() != 2)nt++;
+    for(auto f : adj[u]){
+        if(f == p)continue ;
+
+        if(!vis[f]) dfs(f , u);
+    }
+
+}
+int32_t main(){
+   //  inF;outF;
+    fastio;
+    // Dont Forget memset
+
+    //calculate constraints please!!!
+    cin >> n >> m ;
+    while(m--){
+        int u , v ;
+        cin >> u >> v ;
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+    }
+    int toprint = 0 ;
+
+    for(int i = 1 ; i <= n ; i ++){
+        if(vis[i])continue ;
+        nt = 0 ;
+        dfs(i , -1);
+        if(!nt)toprint++;
+    }
+    cout << toprint;
+
+
+
+}
